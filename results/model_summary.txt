@@ -1,0 +1,26 @@
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                  Class   No. Observations:                  787
+Model:                          Logit   Df Residuals:                      778
+Method:                           MLE   Df Model:                            8
+Date:                Mon, 17 May 2021   Pseudo R-squ.:                  0.8039
+Time:                        17:33:22   Log-Likelihood:                -106.97
+converged:                       True   LL-Null:                       -545.46
+Covariance Type:            nonrobust   LLR p-value:                5.249e-184
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -3.3643      0.292    -11.508      0.000      -3.937      -2.791
+V11            0.3277      0.177      1.851      0.064      -0.019       0.675
+V4             0.7458      0.125      5.986      0.000       0.502       0.990
+V14           -1.1050      0.170     -6.495      0.000      -1.438      -0.772
+V12           -0.8924      0.191     -4.683      0.000      -1.266      -0.519
+V8            -0.5559      0.127     -4.362      0.000      -0.806      -0.306
+Amount         0.0023      0.001      2.997      0.003       0.001       0.004
+V28            2.4545      0.942      2.606      0.009       0.608       4.301
+V13           -0.4317      0.187     -2.305      0.021      -0.799      -0.065
+==============================================================================
+
+Possibly complete quasi-separation: A fraction 0.33 of observations can be
+perfectly predicted. This might indicate that there is complete
+quasi-separation. In this case some parameters will not be identified.
