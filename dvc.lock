@@ -12,26 +12,26 @@ stages:
     params:
       params.yaml:
         resample_data.param: 1
-        resample_data.percentage: 0.7
+        resample_data.percentage: 0.3
     outs:
     - path: balanced-data.csv
-      md5: 75f057c1041f10718909c2571c0f9b6b
-      size: 649364
+      md5: fddfd07d7230be227314695cdcfff85d
+      size: 1163814
     - path: results/after_resampling/Corr_matrices_comp.png
-      md5: 503b0960cd5476aa6c38ce572de0a8be
-      size: 170160
+      md5: 67fec996ed382cbc2448cfd31958cbc7
+      size: 170269
     - path: results/after_resampling/Distrib_after_undersampling.png
-      md5: c613dab557a15fd2cdb63ccaaf1d5078
-      size: 44317
+      md5: becae8251552559472c53e52c15f26d1
+      size: 35211
     - path: results/after_resampling/NFvsF_after_undersampling.json
-      md5: 299b1ec9b011c2c7f26df3753d73661f
-      size: 35
+      md5: 4016d156dc274aa536f14660ccf92df1
+      size: 36
   splitting data:
     cmd: python src/prepare.py
     deps:
     - path: balanced-data.csv
-      md5: 75f057c1041f10718909c2571c0f9b6b
-      size: 649364
+      md5: fddfd07d7230be227314695cdcfff85d
+      size: 1163814
     - path: src/prepare.py
       md5: 01735dbbf6caae3a3af30913f097d741
       size: 957
@@ -40,39 +40,39 @@ stages:
         splitting_data.split-param: 0.2
     outs:
     - path: results/splited_data/test_features.csv
-      md5: 77f7ce2fe1b53ed9e92c8b038b2cc6e0
-      size: 126253
+      md5: 16eba9e0692f2c467be84dfa78fc0bf7
+      size: 226224
     - path: results/splited_data/test_labels.csv
-      md5: 8d745e289e79d2e9cf802d7f09771bc1
-      size: 724
+      md5: 1b95dcdc0229ebba23066e514bd29559
+      size: 1288
     - path: results/splited_data/train_features.csv
-      md5: f0bf0c990ffef54f1803c5c221017747
-      size: 504055
+      md5: fd40372feb7fc12caceaab08280b6963
+      size: 903077
     - path: results/splited_data/train_labels.csv
-      md5: 83ecbfec25d0e7aed8c0f9af30eb766f
-      size: 2872
+      md5: cdc360e9e641820b72119427bf72ce2f
+      size: 5122
   train model:
     cmd: python src/train.py
     deps:
     - path: results/splited_data/train_features.csv
-      md5: f0bf0c990ffef54f1803c5c221017747
-      size: 504055
+      md5: fd40372feb7fc12caceaab08280b6963
+      size: 903077
     - path: results/splited_data/train_labels.csv
-      md5: 83ecbfec25d0e7aed8c0f9af30eb766f
-      size: 2872
+      md5: cdc360e9e641820b72119427bf72ce2f
+      size: 5122
     - path: src/train.py
       md5: 8e9632d80b58af7afd88b7e1eb1924e3
       size: 1424
     outs:
     - path: results/finalvar.pkl
-      md5: 2b66ae77fc514192cbe7aee2d9f9b49e
-      size: 70
+      md5: 9ad590a479752a76d8a2ac30f7b92ba7
+      size: 80
     - path: results/logit.pkl
-      md5: 6ffaea5c1b30c390f78d255a1fe14cfb
-      size: 180895
+      md5: b5cd11c682a5c881159f71a03241ffb0
+      size: 374261
     - path: results/model_summary.txt
-      md5: cadc4f0230f0ad70b19dec4449b4830a
-      size: 2053
+      md5: a01f30b145b11510385da45e01f42751
+      size: 2213
   test model:
     cmd: python src/test.py
     deps:
@@ -80,39 +80,39 @@ stages:
       md5: e90efcb83d69faf99fcab8b0255024de
       size: 150828752
     - path: results/finalvar.pkl
-      md5: 2b66ae77fc514192cbe7aee2d9f9b49e
-      size: 70
+      md5: 9ad590a479752a76d8a2ac30f7b92ba7
+      size: 80
     - path: results/logit.pkl
-      md5: 6ffaea5c1b30c390f78d255a1fe14cfb
-      size: 180895
+      md5: b5cd11c682a5c881159f71a03241ffb0
+      size: 374261
     - path: results/splited_data/test_features.csv
-      md5: 77f7ce2fe1b53ed9e92c8b038b2cc6e0
-      size: 126253
+      md5: 16eba9e0692f2c467be84dfa78fc0bf7
+      size: 226224
     - path: results/splited_data/test_labels.csv
-      md5: 8d745e289e79d2e9cf802d7f09771bc1
-      size: 724
+      md5: 1b95dcdc0229ebba23066e514bd29559
+      size: 1288
     - path: src/test.py
       md5: df273287ff915d0aa6dc94ab6a4a27c2
       size: 2614
     outs:
     - path: results/OnNewSample_classification_report.txt
-      md5: ef9fcaee1d5531cab64cbb9158dbe9c7
+      md5: 621946b1d57a6385304ff2433d85ecc0
       size: 334
     - path: results/Whole_data-set_classification_report.txt
-      md5: 14dccc2632396e179fb85a8ceb8a552e
+      md5: 811d1172baa2aa3342a7330a62295f14
       size: 334
     - path: results/accuracy(newsample).json
-      md5: 33a0be3aa0a24fad9f3ddefc43d0932a
+      md5: b3f73ca5d2d291362c480c4c7be77116
       size: 38
     - path: results/accuracy(whole_data-set).json
-      md5: 98dd8a9e13a0aa91f73967552b760156
+      md5: 50a66df078999d08cff62a35ceaaae7c
       size: 38
     - path: results/confusion-matrix(newsample).png
-      md5: 16593a8eab753460a152614dbc523d9d
-      size: 18376
+      md5: 5ce3f8e05ad62a457a2f567f6dbf1d96
+      size: 20946
     - path: results/confusion-matrix(whole_data-set).png
-      md5: 366f1963c744b9674f1f273b1ceb60f2
-      size: 27802
+      md5: 7f669e382f33a0662396786d33aa5aaf
+      size: 28628
   understand data:
     cmd: python src/data_understanding.py
     deps:
