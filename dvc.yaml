@@ -54,12 +54,16 @@ stages :
    metrics : 
     - results/model_summary.txt:
         cache: false
-
+   outs : 
+    - results/finalvar.pkl
+    - results/logit.pkl
         
         
   test model : 
    cmd : python src/test.py 
    deps: 
+    - results/finalvar.pkl
+    - results/logit.pkl
     - src/test.py
     - results/splited_data/test_features.csv
     - results/splited_data/test_labels.csv
