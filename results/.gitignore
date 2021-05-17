@@ -5,3 +5,5 @@
 /OnNewSample_classification_report.txt
 /Whole_data-set_classification_report.txt
 /model_summary.txt
+/accuracy(newsample).json
+/accuracy(whole_data-set).json

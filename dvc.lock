@@ -1,0 +1,134 @@
+schema: '2.0'
+stages:
+  resample data:
+    cmd: python src/Resampling.py
+    deps:
+    - path: creditcard.csv
+      md5: e90efcb83d69faf99fcab8b0255024de
+      size: 150828752
+    - path: src/Resampling.py
+      md5: 32976ab67ba2f1da242f5d74cebf2a5d
+      size: 3987
+    params:
+      params.yaml:
+        resample_data.param: 1
+        resample_data.percentage: 0.7
+    outs:
+    - path: balanced-data.csv
+      md5: 75f057c1041f10718909c2571c0f9b6b
+      size: 649364
+    - path: results/after_resampling/Corr_matrices_comp.png
+      md5: 503b0960cd5476aa6c38ce572de0a8be
+      size: 170160
+    - path: results/after_resampling/Distrib_after_undersampling.png
+      md5: c613dab557a15fd2cdb63ccaaf1d5078
+      size: 44317
+    - path: results/after_resampling/NFvsF_after_undersampling.json
+      md5: 299b1ec9b011c2c7f26df3753d73661f
+      size: 35
+  splitting data:
+    cmd: python src/prepare.py
+    deps:
+    - path: balanced-data.csv
+      md5: 75f057c1041f10718909c2571c0f9b6b
+      size: 649364
+    - path: src/prepare.py
+      md5: 01735dbbf6caae3a3af30913f097d741
+      size: 957
+    params:
+      params.yaml:
+        splitting_data.split-param: 0.2
+    outs:
+    - path: results/splited_data/test_features.csv
+      md5: 77f7ce2fe1b53ed9e92c8b038b2cc6e0
+      size: 126253
+    - path: results/splited_data/test_labels.csv
+      md5: 8d745e289e79d2e9cf802d7f09771bc1
+      size: 724
+    - path: results/splited_data/train_features.csv
+      md5: f0bf0c990ffef54f1803c5c221017747
+      size: 504055
+    - path: results/splited_data/train_labels.csv
+      md5: 83ecbfec25d0e7aed8c0f9af30eb766f
+      size: 2872
+  train model:
+    cmd: python src/train.py
+    deps:
+    - path: results/splited_data/train_features.csv
+      md5: f0bf0c990ffef54f1803c5c221017747
+      size: 504055
+    - path: results/splited_data/train_labels.csv
+      md5: 83ecbfec25d0e7aed8c0f9af30eb766f
+      size: 2872
+    - path: src/train.py
+      md5: 8e9632d80b58af7afd88b7e1eb1924e3
+      size: 1424
+    outs:
+    - path: results/finalvar.pkl
+      md5: 2b66ae77fc514192cbe7aee2d9f9b49e
+      size: 70
+    - path: results/logit.pkl
+      md5: 6ffaea5c1b30c390f78d255a1fe14cfb
+      size: 180895
+    - path: results/model_summary.txt
+      md5: cadc4f0230f0ad70b19dec4449b4830a
+      size: 2053
+  test model:
+    cmd: python src/test.py
+    deps:
+    - path: creditcard.csv
+      md5: e90efcb83d69faf99fcab8b0255024de
+      size: 150828752
+    - path: results/finalvar.pkl
+      md5: 2b66ae77fc514192cbe7aee2d9f9b49e
+      size: 70
+    - path: results/logit.pkl
+      md5: 6ffaea5c1b30c390f78d255a1fe14cfb
+      size: 180895
+    - path: results/splited_data/test_features.csv
+      md5: 77f7ce2fe1b53ed9e92c8b038b2cc6e0
+      size: 126253
+    - path: results/splited_data/test_labels.csv
+      md5: 8d745e289e79d2e9cf802d7f09771bc1
+      size: 724
+    - path: src/test.py
+      md5: df273287ff915d0aa6dc94ab6a4a27c2
+      size: 2614
+    outs:
+    - path: results/OnNewSample_classification_report.txt
+      md5: ef9fcaee1d5531cab64cbb9158dbe9c7
+      size: 334
+    - path: results/Whole_data-set_classification_report.txt
+      md5: 14dccc2632396e179fb85a8ceb8a552e
+      size: 334
+    - path: results/accuracy(newsample).json
+      md5: 33a0be3aa0a24fad9f3ddefc43d0932a
+      size: 38
+    - path: results/accuracy(whole_data-set).json
+      md5: 98dd8a9e13a0aa91f73967552b760156
+      size: 38
+    - path: results/confusion-matrix(newsample).png
+      md5: 16593a8eab753460a152614dbc523d9d
+      size: 18376
+    - path: results/confusion-matrix(whole_data-set).png
+      md5: 366f1963c744b9674f1f273b1ceb60f2
+      size: 27802
+  understand data:
+    cmd: python src/data_understanding.py
+    deps:
+    - path: creditcard.csv
+      md5: e90efcb83d69faf99fcab8b0255024de
+      size: 150828752
+    - path: src/data_understanding.py
+      md5: 2dc44a62e57d1ac02c662a45925f71be
+      size: 1636
+    outs:
+    - path: results/before_resampling/Count_before_undersampling.png
+      md5: 34238b3ce21d197cb7e71983b8511699
+      size: 23368
+    - path: results/before_resampling/NFvsF_before_undersampling.json
+      md5: 640cfb76f2deb8e77b2a4b76f1e90eff
+      size: 38
+    - path: results/before_resampling/distrib_before_undersampling.png
+      md5: ac339318b7ee4307b07c396a598d09de
+      size: 34123

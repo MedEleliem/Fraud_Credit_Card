@@ -54,13 +54,10 @@ stages :
     - src/train.py
     - results/splited_data/train_features.csv
     - results/splited_data/train_labels.csv
-   metrics : 
-    - results/model_summary.txt:
-        cache: false
    outs : 
     - results/finalvar.pkl
     - results/logit.pkl
-        
+    - results/model_summary.txt   
         
   test model : 
    cmd : python src/test.py 
