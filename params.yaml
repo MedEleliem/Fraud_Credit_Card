@@ -1,6 +1,6 @@
 resample_data : 
    param : 1
-   percentage : 1
+   percentage : 0.8
   
 splitting_data : 
    split-param : 0.2
