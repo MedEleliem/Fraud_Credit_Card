@@ -5,3 +5,26 @@
 ##### Git clone this repo, then dvc pull using GIT, the csv data-set is already uploaded on googledrive and will be automatically downloaded
 
 "# Fraud_Credit_Card" 
+
+
+ +--------------------+
+                              | creditcard.csv.dvc |
+                             *+--------------------+****
+                       ******             *             *****
+                  *****                   *                  *****
+               ***                        *                       ******
++-----------------+              +---------------+                      ***
+| understand data |              | resample data |                        *
++-----------------+              +---------------+                        *
+                                          *                               *
+                                          *                               *
+                                          *                               *
+                                +----------------+                        *
+                                | splitting data |                        *
+                                +----------------+*****                   *
+                                          *            ******             *
+                                          *                  *****        *
+                                          *                       ***     *
+                                  +-------------+                 +------------+
+                                  | train model |                 | test model |
+                                  +-------------+                 +------------+
