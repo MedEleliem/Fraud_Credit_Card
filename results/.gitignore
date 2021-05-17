@@ -2,4 +2,6 @@
 /logit.pkl
 /confusion-matrix(newsample).png
 /confusion-matrix(whole_data-set).png
-
+/OnNewSample_classification_report.txt
+/Whole_data-set_classification_report.txt
+/model_summary.txt
