@@ -1,0 +1,74 @@
+stages : 
+
+  understand data :   
+   cmd : python src/data_understanding.py 
+   deps : 
+    - src/data_understanding.py
+    - creditcard.csv
+   metrics:
+    - results/before_resampling/NFvsF_before_undersampling.json:
+        cache: false
+
+  
+  resample data : 
+   cmd: python src/Resampling.py 
+   deps :  
+    - creditcard.csv
+   params:
+    - resample_data.param 
+    - resample_data.percentage 
+   metrics:
+    - results/after_resampling/NFvsF_after_undersampling.json:
+        cache: false
+   outs : 
+    - balanced-data.csv
+    
+  
+  
+  
+  splitting data : 
+   cmd : python src/prepare.py
+   deps : 
+    - src/prepare.py
+    - balanced-data.csv
+   params:
+    - splitting_data.split-param
+   outs : 
+    - results/splited_data/train_features.csv
+    - results/splited_data/test_features.csv
+    - results/splited_data/train_labels.csv
+    - results/splited_data/test_labels.csv  
+   
+   
+   
+   
+  train model :
+   cmd : python src/train.py 
+   deps : 
+    - src/train.py
+    - results/splited_data/train_features.csv
+    - results/splited_data/train_labels.csv
+   metrics : 
+    - results/model_summary.txt:
+        cache: false
+   outs :
+    - results/logit.pkl  
+    - results/finalvar.pkl
+        
+        
+  test model : 
+   cmd : python src/test.py 
+   deps: 
+    - src/test.py
+    - results/splited_data/test_features.csv
+    - results/splited_data/test_labels.csv
+    - creditcard.csv
+   metrics :
+    - results/accuracy(newsample).json:
+        cache: false
+    - results/accuracy(whole_data-set).json:
+        cache: false
+    - results/OnNewSample_classification_report.txt :
+        cache: false
+    - results/Whole_data-set_classification_report.txt:
+        cache: false

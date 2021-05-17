@@ -1,0 +1,14 @@
+resample_data : 
+   param : 1
+   percentage : 1
+  
+splitting_data : 
+   split-param : 0.2
+
+
+train_model :
+   model_type : "logistic"
+   elimination_criteria : "aic"
+   varchar_process : "dummy_dropfirst" 
+   p-value :  0.05
+   
