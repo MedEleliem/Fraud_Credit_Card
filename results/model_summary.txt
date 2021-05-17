@@ -4,7 +4,7 @@ Dep. Variable:                  Class   No. Observations:                  787
 Model:                          Logit   Df Residuals:                      778
 Method:                           MLE   Df Model:                            8
 Date:                Mon, 17 May 2021   Pseudo R-squ.:                  0.8039
-Time:                        17:33:22   Log-Likelihood:                -106.97
+Time:                        18:10:25   Log-Likelihood:                -106.97
 converged:                       True   LL-Null:                       -545.46
 Covariance Type:            nonrobust   LLR p-value:                5.249e-184
 ==============================================================================

@@ -80,8 +80,14 @@ stages:
       md5: 8e9632d80b58af7afd88b7e1eb1924e3
       size: 1424
     outs:
+    - path: results/finalvar.pkl
+      md5: 8111434a98d502cfb8ed1d77062b92a2
+      size: 65
+    - path: results/logit.pkl
+      md5: fc5350528866c669ab2022962513ed19
+      size: 137036
     - path: results/model_summary.txt
-      md5: 9c6aba09bab63b676a4bdfc7fe1d6cb4
+      md5: c41bbd0b282dcdd55392ecf1a002f6e9
       size: 1973
   test model:
     cmd: python src/test.py
@@ -89,6 +95,12 @@ stages:
     - path: creditcard.csv
       md5: e90efcb83d69faf99fcab8b0255024de
       size: 150828752
+    - path: results/finalvar.pkl
+      md5: 8111434a98d502cfb8ed1d77062b92a2
+      size: 65
+    - path: results/logit.pkl
+      md5: fc5350528866c669ab2022962513ed19
+      size: 137036
     - path: results/splited_data/test_features.csv
       md5: 5a3d8b138a6beeb40c4f5c8312f1d4c9
       size: 103823
