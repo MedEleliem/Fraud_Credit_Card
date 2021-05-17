@@ -8,9 +8,6 @@ stages :
    metrics:
     - results/before_resampling/NFvsF_before_undersampling.json:
         cache: false
-   outs : 
-    - results/before_resampling/Count_before_undersampling.png
-    - results/before_resampling/distrib_before_undersampling.png
 
   
   resample data : 
@@ -25,8 +22,7 @@ stages :
         cache: false
    outs : 
     - balanced-data.csv
-    - results/after_resampling/Distrib_after_undersampling.png
-    - results/after_resampling/Corr_matrices_comp.png
+
   
   
   splitting data : 
