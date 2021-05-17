@@ -75,7 +75,7 @@ No_Frauds_n = y.value_counts()[0]
 Frauds_n = y.value_counts()[1]
 
 count = {"No Frauds " : int(No_Frauds_n), "Frauds " : int(Frauds_n)}
-with open(r'results\before_resampling\NFvsF_after_undersampling.json', 'w') as fd:
+with open(r'results\after_resampling\NFvsF_after_undersampling.json', 'w') as fd:
     json.dump(count, fd)
 
 # image/Class Distribution formatting

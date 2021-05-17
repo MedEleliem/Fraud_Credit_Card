@@ -5,6 +5,9 @@ stages :
    deps : 
     - src/data_understanding.py
     - creditcard.csv
+   outs: 
+    - results/before_resampling/Count_before_undersampling.png
+    - results/before_resampling/distrib_before_undersampling.png
    metrics:
     - results/before_resampling/NFvsF_before_undersampling.json:
         cache: true
@@ -13,15 +16,19 @@ stages :
   resample data : 
    cmd: python src/Resampling.py 
    deps :  
+    - src/Resampling.py
     - creditcard.csv
    params:
     - resample_data.param 
-    - resample_data.percentage 
+    - resample_data.percentage
+   outs : 
+    - results/after_resampling/Distrib_after_undersampling.png
+    - results/after_resampling/Corr_matrices_comp.png
+    - balanced-data.csv  
    metrics:
     - results/after_resampling/NFvsF_after_undersampling.json:
         cache: true
-   outs : 
-    - balanced-data.csv
+   
 
   
   
@@ -64,6 +71,9 @@ stages :
     - results/splited_data/test_features.csv
     - results/splited_data/test_labels.csv
     - creditcard.csv
+   outs:
+    - results/confusion-matrix(newsample).png
+    - results/confusion-matrix(whole_data-set).png
    metrics :
     - results/accuracy(newsample).json:
         cache: true
@@ -73,3 +83,5 @@ stages :
         cache: true
     - results/Whole_data-set_classification_report.txt:
         cache: true
+
+   
