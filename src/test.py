@@ -26,8 +26,6 @@ with open(input1, 'rb') as fd:
 with open(input2, 'rb') as fd:
     variables = pickle.load(fd)
 
-our_logit_model = pickle.load(open(r'results/logit.pkl', 'rb'))
-variables = pickle.load(open(r'results/finalvar.pkl', 'rb'))
 
 X_ntest = X_test[variables]
 X_ntest = sm.add_constant(X_ntest)
