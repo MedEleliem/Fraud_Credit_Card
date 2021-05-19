@@ -79,3 +79,6 @@ dvc repro
 #### after doing this, push it to a new branche, differences and new plots will be displayed in the github-action bot in the new pull-request
 
 ### Also you can simply edit on github, create a pull resquest, the workflow is already automated ;) 
+### e.g
+![image](https://user-images.githubusercontent.com/64113527/118899364-7a6f7800-b906-11eb-96a4-097917ca385c.png)
+
