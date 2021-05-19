@@ -1,25 +1,26 @@
 schema: '2.0'
 stages:
   resample data:
-    cmd: python src/Resampling.py
+    cmd: python src/Resampling.py results/after_resampling/NFvsF_after_undersampling.json
+      results/after_resampling/Distrib_after_undersampling.png results/after_resampling/Corr_matrices_comp.png
     deps:
     - path: creditcard.csv
       md5: e90efcb83d69faf99fcab8b0255024de
       size: 150828752
     - path: src/Resampling.py
-      md5: 32976ab67ba2f1da242f5d74cebf2a5d
-      size: 3987
+      md5: 5a5773e8a1e6a25ff7aaa87b74564ca9
+      size: 4242
     params:
       params.yaml:
         resample_data.param: 1
         resample_data.percentage: 1
     outs:
     - path: balanced-data.csv
-      md5: 6d2b517e7e4233eca2c8e6846ca5228b
-      size: 534177
+      md5: 7c326a9ada50081490b2540d1154e60d
+      size: 534065
     - path: results/after_resampling/Corr_matrices_comp.png
-      md5: 4b0fe26ca33850f7a39d71da2f8ea287
-      size: 169970
+      md5: 3e1943ecdf1600331bb9d349fadc7a23
+      size: 169900
     - path: results/after_resampling/Distrib_after_undersampling.png
       md5: 5284a6185952e971a1ebd32c75dbfb7b
       size: 44701
@@ -30,8 +31,8 @@ stages:
     cmd: python src/prepare.py
     deps:
     - path: balanced-data.csv
-      md5: 6d2b517e7e4233eca2c8e6846ca5228b
-      size: 534177
+      md5: 7c326a9ada50081490b2540d1154e60d
+      size: 534065
     - path: src/prepare.py
       md5: 01735dbbf6caae3a3af30913f097d741
       size: 957
@@ -40,85 +41,91 @@ stages:
         splitting_data.split-param: 0.2
     outs:
     - path: results/splited_data/test_features.csv
-      md5: 59f1228f8049cba9166e8c35a8cd88d4
-      size: 103900
+      md5: 82dd002b9639a8f6a34430d374d9aaaa
+      size: 103857
     - path: results/splited_data/test_labels.csv
-      md5: 7c73af1c12bea909348d0855e1952f0b
+      md5: c91a57627ff599e4ba498619e2e9679f
       size: 598
     - path: results/splited_data/train_features.csv
-      md5: e670b6117cf62a0d1418af0e81d7c31d
-      size: 414692
+      md5: 96e33c3194699f1bf207d759638033d8
+      size: 414560
     - path: results/splited_data/train_labels.csv
-      md5: ac3f59ff3e3a7057b23e7035c11f1a31
+      md5: 7fa795bb549abbb99192cbf537899e66
       size: 2368
   train model:
-    cmd: python src/train.py
+    cmd: python src/train.py results/finalvar.pkl results/logit.pkl results/model_summary.txt
     deps:
     - path: results/splited_data/train_features.csv
-      md5: e670b6117cf62a0d1418af0e81d7c31d
-      size: 414692
+      md5: 96e33c3194699f1bf207d759638033d8
+      size: 414560
     - path: results/splited_data/train_labels.csv
-      md5: ac3f59ff3e3a7057b23e7035c11f1a31
+      md5: 7fa795bb549abbb99192cbf537899e66
       size: 2368
     - path: src/train.py
-      md5: 26393627cb012cc84e9be812546d6b09
-      size: 1426
+      md5: d167547357f2c74695c244ac990adbff
+      size: 1669
     outs:
     - path: results/finalvar.pkl
-      md5: 04d094090d565010302ebc0866b306e8
-      size: 61
+      md5: a821f7fe826df160b846a15bea84940c
+      size: 149983
     - path: results/logit.pkl
-      md5: ccb98b44b82ceae50cfe49e433ed59ac
-      size: 137032
+      md5: 5c6e768401384131a7be3a3fd352cb01
+      size: 70
+    - path: results/model_summary.txt
+      md5: 52bce72bc605f4883abb569533d3e11a
+      size: 2053
   test model:
-    cmd: python src/test.py
+    cmd: python src/test.py results/finalvar.pkl results/logit.pkl results/accuracy_ns.json
+      results/confusionmatrix_ns.png results/classification_report_ns.txt results/accuracy_wd.json
+      results/confusionmatrix_wd.png results/classification_report_wd.txt
     deps:
     - path: creditcard.csv
       md5: e90efcb83d69faf99fcab8b0255024de
       size: 150828752
     - path: results/finalvar.pkl
-      md5: 04d094090d565010302ebc0866b306e8
-      size: 61
+      md5: a821f7fe826df160b846a15bea84940c
+      size: 149983
     - path: results/logit.pkl
-      md5: ccb98b44b82ceae50cfe49e433ed59ac
-      size: 137032
+      md5: 5c6e768401384131a7be3a3fd352cb01
+      size: 70
     - path: results/splited_data/test_features.csv
-      md5: 59f1228f8049cba9166e8c35a8cd88d4
-      size: 103900
+      md5: 82dd002b9639a8f6a34430d374d9aaaa
+      size: 103857
     - path: results/splited_data/test_labels.csv
-      md5: 7c73af1c12bea909348d0855e1952f0b
+      md5: c91a57627ff599e4ba498619e2e9679f
       size: 598
     - path: src/test.py
-      md5: df273287ff915d0aa6dc94ab6a4a27c2
-      size: 2614
+      md5: 79b0569f522b9d532078e94199b92d5f
+      size: 2847
     outs:
-    - path: results/OnNewSample_classification_report.txt
-      md5: 7dd4b30263f4282cc79bbe44c2817cdb
-      size: 334
-    - path: results/Whole_data-set_classification_report.txt
-      md5: d92c3fd571d97eee4737d5decf916af2
-      size: 334
-    - path: results/accuracy(newsample).json
-      md5: 9aaf024022307377396f3a82979374bd
+    - path: results/accuracy_ns.json
+      md5: fdf753eaed97506b69eb761ac0a70190
+      size: 37
+    - path: results/accuracy_wd.json
+      md5: 1e4ef98d8748fc2d0aea9a818e497559
       size: 38
-    - path: results/accuracy(whole_data-set).json
-      md5: b99fe54caf76a8bef1ff92c7e01cafbf
-      size: 38
-    - path: results/confusion-matrix(newsample).png
-      md5: 8bbd9103f2e1a7aeb47c8090a3d23fa4
-      size: 15072
-    - path: results/confusion-matrix(whole_data-set).png
-      md5: 87578b686962807ccfd63a9b4f12dcd7
-      size: 27844
+    - path: results/classification_report_ns.txt
+      md5: a648f689c10f2c8e95519fd89693c8fc
+      size: 334
+    - path: results/classification_report_wd.txt
+      md5: 8f3cf7b58d076d3287b0a4fd65ce491d
+      size: 334
+    - path: results/confusionmatrix_ns.png
+      md5: 4cf221b917dc594118e321296cf4325f
+      size: 14395
+    - path: results/confusionmatrix_wd.png
+      md5: 3d4d5768e3b76ca6c15d71a227d53955
+      size: 28528
   understand data:
-    cmd: python src/data_understanding.py
+    cmd: python src/data_understanding.py results/before_resampling/NFvsF_before_undersampling.json
+      results/before_resampling/Count_before_undersampling.png results/before_resampling/distrib_before_undersampling.png
     deps:
     - path: creditcard.csv
       md5: e90efcb83d69faf99fcab8b0255024de
       size: 150828752
     - path: src/data_understanding.py
-      md5: 2dc44a62e57d1ac02c662a45925f71be
-      size: 1636
+      md5: 77cffc34a75f42bb9ceaef05f5e57026
+      size: 1897
     outs:
     - path: results/before_resampling/Count_before_undersampling.png
       md5: 34238b3ce21d197cb7e71983b8511699

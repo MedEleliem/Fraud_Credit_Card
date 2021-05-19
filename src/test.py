@@ -8,13 +8,21 @@ import json
 import sys
 
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 9:
     sys.stderr.write('Arguments error. Usage:\n')
-    sys.stderr.write('\tpython src/test.py results/finalvar.pkl results/logit.pkl\n')
+    sys.stderr.write('\t python src/test.py results/finalvar.pkl results/logit.pkl results/accuracy_ns.json results/confusionmatrix_ns.png results/classification_report_ns.txt results/accuracy_wd.json results/confusionmatrix_wd.png results/classification_report_wd.txt\n')
     sys.exit(1)
 
 input1 = sys.argv[1]
 input2 = sys.argv[2]
+
+output1 = sys.argv[3]
+output2 = sys.argv[4]
+output3 = sys.argv[5]
+output4 = sys.argv[6]
+output5 = sys.argv[7]
+output6 = sys.argv[8]
+
 #####  Model Testing phase 1 (on subsample) report #####
 
 X_test = pd.read_csv(r'results/splited_data/test_features.csv')
@@ -41,7 +49,7 @@ a_s = accuracy_score(test_list, prediction)
 cr = classification_report(test_list,prediction)
 
 
-with open(r'results/accuracy(newsample).json', 'w') as fd:
+with open(output1, 'w') as fd:
     json.dump({'model_accuracy':a_s}, fd)
 #saving confusion matrix as png    
 df_cm = pd.DataFrame(cm, [0, 1])
@@ -49,13 +57,14 @@ df_cm = pd.DataFrame(cm, [0, 1])
 sns.set(font_scale=1.4) # for label size
 sns.heatmap(df_cm, annot=True, annot_kws={"size": 16}) 
 plt.tight_layout()
-plt.savefig(r'results/confusion-matrix(newsample).png',dpi=120) 
+plt.savefig(output2,dpi=120) 
 plt.close()
 
 
-with open(r'results/OnNewSample_classification_report.txt','w') as outfile : 
+with open(output3,'w') as outfile : 
         outfile.write(cr)
      
+
 
 #####  Model Testing phase 2 (on the whole data-set) report #####
 
@@ -77,7 +86,7 @@ a_s = accuracy_score(y, prediction)
 cr = classification_report(y, prediction)
 
 
-with open(r'results/accuracy(whole_data-set).json', 'w') as fd:
+with open(output4, 'w') as fd:
     json.dump({'model_accuracy':a_s}, fd)
 #saving confusion matrix as png    
 df_cm = pd.DataFrame(cm, [0, 1])
@@ -85,10 +94,10 @@ df_cm = pd.DataFrame(cm, [0, 1])
 sns.set(font_scale=1.4) # for label size
 sns.heatmap(df_cm, annot=True, annot_kws={"size": 16}) 
 plt.tight_layout()
-plt.savefig(r'results/confusion-matrix(whole_data-set).png',dpi=120) 
+plt.savefig(output5,dpi=120) 
 plt.close()
 
 
-with open(r'results/Whole_data-set_classification_report.txt','w') as outfile : 
+with open(output6,'w') as outfile : 
         outfile.write(cr)
      

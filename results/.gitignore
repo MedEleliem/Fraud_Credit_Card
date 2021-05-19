@@ -2,3 +2,5 @@
 /logit.pkl
 /confusion-matrix(newsample).png
 /confusion-matrix(whole_data-set).png
+/confusionmatrix_ns.png
+/confusionmatrix_wd.png

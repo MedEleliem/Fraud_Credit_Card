@@ -10,7 +10,7 @@ import yaml
 import json
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import sys
 #### Creating directory for results
 if not os.path.isdir(r'results\after_resampling'):
     os.makedirs(r'results\after_resampling')
@@ -50,6 +50,17 @@ def final_func(param,inputt, output, percentage):
   elif param==3:
     return SMOTE_sampler_func(inputt, output, percentage)
 
+
+
+if len(sys.argv) != 4:
+    sys.stderr.write('Arguments error. Usage:\n')
+    sys.stderr.write('\tpython src/Resampling.py results/after_resampling/NFvsF_after_undersampling.json results/after_resampling/Distrib_after_undersampling.png results/after_resampling/Corr_matrices_comp.png\n')
+    sys.exit(1)
+    
+output1 = sys.argv[1]
+output2 = sys.argv[2]
+output3 = sys.argv[3]   
+
     
 raw_data_path = 'creditcard.csv'
 df = pd.read_csv(raw_data_path)
@@ -75,7 +86,7 @@ No_Frauds_n = y.value_counts()[0]
 Frauds_n = y.value_counts()[1]
 
 count = {"No Frauds " : int(No_Frauds_n), "Frauds " : int(Frauds_n)}
-with open(r'results\after_resampling\NFvsF_after_undersampling.json', 'w') as fd:
+with open(output1, 'w') as fd:
     json.dump(count, fd)
 
 # image/Class Distribution formatting
@@ -89,7 +100,7 @@ ax.set_ylabel('Density', fontsize = axis_fs)#ylabel
 ax.set_title('Class Distribution after undersampling', fontsize = title_fs)
 
 plt.tight_layout()
-plt.savefig(r'results\after_resampling\Distrib_after_undersampling.png',dpi=120) 
+plt.savefig(output2,dpi=120) 
 plt.close()
 
 ###### Correlation matrices comparaison ######
@@ -104,7 +115,7 @@ sns.heatmap(sub_sample_corr, cmap='coolwarm_r', annot_kws={'size':20}, ax=ax2)
 ax2.set_title('SubSample Correlation Matrix \n (use for reference)', fontsize=14)
 
 plt.tight_layout()
-plt.savefig(r'results\after_resampling\Corr_matrices_comp.png',dpi=120) 
+plt.savefig(output3,dpi=120) 
 plt.close()     
 
 

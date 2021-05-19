@@ -1,15 +1,20 @@
 stages : 
 
   understand data :   
-   cmd : python src/data_understanding.py 
+   cmd : python src/data_understanding.py results/before_resampling/NFvsF_before_undersampling.json results/before_resampling/Count_before_undersampling.png results/before_resampling/distrib_before_undersampling.png
    deps : 
     - src/data_understanding.py
     - creditcard.csv
-
+   outs :
+    - results/before_resampling/Count_before_undersampling.png
+    - results/before_resampling/distrib_before_undersampling.png
+   metrics:
+    - results/before_resampling/NFvsF_before_undersampling.json:
+       cache : false
 
   
   resample data : 
-   cmd: python src/Resampling.py 
+   cmd: python src/Resampling.py results/after_resampling/NFvsF_after_undersampling.json results/after_resampling/Distrib_after_undersampling.png results/after_resampling/Corr_matrices_comp.png
    deps :  
     - src/Resampling.py
     - creditcard.csv
@@ -17,9 +22,12 @@ stages :
     - resample_data.param 
     - resample_data.percentage
    outs : 
-    - balanced-data.csv  
-
-   
+    - balanced-data.csv
+    - results/after_resampling/Distrib_after_undersampling.png  
+    - results/after_resampling/Corr_matrices_comp.png
+   metrics : 
+    - results/after_resampling/NFvsF_after_undersampling.json:
+       cache : false
 
   
   
@@ -41,7 +49,7 @@ stages :
    
    
   train model :
-   cmd : python src/train.py results/finalvar.pkl results/logit.pkl   
+   cmd : python src/train.py results/finalvar.pkl results/logit.pkl results/model_summary.txt   
    deps : 
     - src/train.py
     - results/splited_data/train_features.csv
@@ -49,9 +57,13 @@ stages :
    outs :
     - results/finalvar.pkl
     - results/logit.pkl     
+   metrics :
+    - results/model_summary.txt:
+       cache : false
+ 
            
   test model : 
-   cmd : python src/test.py results/finalvar.pkl results/logit.pkl
+   cmd : python src/test.py results/finalvar.pkl results/logit.pkl results/accuracy_ns.json results/confusionmatrix_ns.png results/classification_report_ns.txt results/accuracy_wd.json results/confusionmatrix_wd.png results/classification_report_wd.txt
    deps: 
     - results/finalvar.pkl
     - results/logit.pkl
@@ -59,5 +71,16 @@ stages :
     - results/splited_data/test_features.csv
     - results/splited_data/test_labels.csv
     - creditcard.csv
-
+   outs: 
+    - results/confusionmatrix_ns.png
+    - results/confusionmatrix_wd.png
+   metrics:
+    - results/accuracy_ns.json:
+       cache : false
+    - results/classification_report_ns.txt:
+       cache : false
+    - results/accuracy_wd.json:
+       cache : false
+    - results/classification_report_wd.txt:
+       cache : false
    
