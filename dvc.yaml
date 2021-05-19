@@ -22,7 +22,6 @@ stages :
     - resample_data.param 
     - resample_data.percentage
    outs : 
-    - results/after_resampling/Distrib_after_undersampling.png
     - results/after_resampling/Corr_matrices_comp.png
     - balanced-data.csv  
    metrics:
