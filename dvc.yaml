@@ -46,7 +46,9 @@ stages :
     - src/train.py
     - results/splited_data/train_features.csv
     - results/splited_data/train_labels.csv
-        
+   outs :
+    - results/finalvar.pkl
+    - results/logit.pkl     
            
   test model : 
    cmd : python src/test.py 
