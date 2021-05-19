@@ -1,4 +1,0 @@
-[core]
-    remote = myremote
-['remote "myremote"']
-    url = gdrive://1qdDoHUW6BgpAJtk8z0h-JbijKKKoegqG
