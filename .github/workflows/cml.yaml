@@ -16,6 +16,3 @@ jobs:
           # Pull data & run-cache from GOOGLE-DRIVE and reproduce pipeline
           dvc pull creditcard.csv --run-cache
           dvc repro
-          echo "## Logit Model Results" > report.md
-          cat results/model_summary.txt >> report.md
-          cml-send-comment report.md
