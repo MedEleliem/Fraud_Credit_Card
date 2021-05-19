@@ -4,10 +4,10 @@
 ## 1 STEP
 ##### Git clone this repo, then dvc pull using GIT, the csv data-set is already uploaded on googledrive and will be automatically downloaded
 
-"# Fraud_Credit_Card" 
+Directory Structure
+--------------------
 
 
- +--------------------+
                               | creditcard.csv.dvc |
                              *+--------------------+****
                        ******             *             *****
