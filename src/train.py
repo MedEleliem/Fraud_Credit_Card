@@ -4,10 +4,10 @@ from Stepwise_model_selection import forwardSelection
 import pickle
 import yaml
 
-X_train = pd.read_csv(r'results\splited_data\train_features.csv')
-X_test = pd.read_csv(r'results\splited_data\test_features.csv')
-y_train = pd.read_csv(r'results\splited_data\train_labels.csv')
-y_test = pd.read_csv(r'results\splited_data\test_labels.csv')
+X_train = pd.read_csv(r'results/splited_data/train_features.csv')
+X_test = pd.read_csv(r'results/splited_data/test_features.csv')
+y_train = pd.read_csv(r'results/splited_data/train_labels.csv')
+y_test = pd.read_csv(r'results/splited_data/test_labels.csv')
 
 #setting up parameters ( read more in src/Stepwise_model_selection.py)
 with open(r'params.yaml', 'r') as fd:
