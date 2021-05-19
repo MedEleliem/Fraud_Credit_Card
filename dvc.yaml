@@ -51,7 +51,7 @@ stages :
     - results/logit.pkl     
            
   test model : 
-   cmd : python src/test.py 
+   cmd : python src/test.py results/finalvar.pkl results/logit.pkl
    deps: 
     - results/finalvar.pkl
     - results/logit.pkl

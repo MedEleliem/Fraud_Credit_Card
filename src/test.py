@@ -5,12 +5,27 @@ import pandas as pd
 import pickle
 import statsmodels.api as sm
 import json
+import sys
 
+
+if len(sys.argv) != 3:
+    sys.stderr.write('Arguments error. Usage:\n')
+    sys.stderr.write('\tpython src/test.py results/finalvar.pkl results/logit.pkl\n')
+    sys.exit(1)
+
+input1 = sys.argv[1]
+input2 = sys.argv[2]
 #####  Model Testing phase 1 (on subsample) report #####
 
 X_test = pd.read_csv(r'results/splited_data/test_features.csv')
 y_test = pd.read_csv(r'results/splited_data/test_labels.csv')
 test_list = y_test.values.tolist()
+
+with open(input1, 'rb') as fd:
+    our_logit_model = pickle.load(fd)
+with open(input2, 'rb') as fd:
+    variables = pickle.load(fd)
+
 our_logit_model = pickle.load(open(r'results/logit.pkl', 'rb'))
 variables = pickle.load(open(r'results/finalvar.pkl', 'rb'))
 
