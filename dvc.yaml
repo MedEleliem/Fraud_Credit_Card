@@ -10,7 +10,7 @@ stages :
     - results/before_resampling/distrib_before_undersampling.png
    metrics:
     - results/before_resampling/NFvsF_before_undersampling.json:
-        cache: true
+        cache: false
 
   
   resample data : 
@@ -27,7 +27,7 @@ stages :
     - balanced-data.csv  
    metrics:
     - results/after_resampling/NFvsF_after_undersampling.json:
-        cache: true
+        cache: false
    
 
   
@@ -48,6 +48,7 @@ stages :
    
    
    
+   
   train model :
    cmd : python src/train.py 
    deps : 
@@ -58,7 +59,14 @@ stages :
     - results/finalvar.pkl
     - results/logit.pkl
     - results/model_summary.txt   
+   metrics:
+    - results/model_summary.txt:
+        cache : false
         
+        
+        
+        
+           
   test model : 
    cmd : python src/test.py 
    deps: 
@@ -73,12 +81,12 @@ stages :
     - results/confusion-matrix(whole_data-set).png
    metrics :
     - results/accuracy(newsample).json:
-        cache: true
+        cache: false
     - results/accuracy(whole_data-set).json:
-        cache: true
+        cache: false
     - results/OnNewSample_classification_report.txt :
-        cache: true
+        cache: false
     - results/Whole_data-set_classification_report.txt:
-        cache: true
+        cache: false
 
    
