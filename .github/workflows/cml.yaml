@@ -16,3 +16,28 @@ jobs:
           # Pull data & run-cache from GOOGLE-DRIVE and reproduce pipeline
           dvc pull creditcard.csv --run-cache
           dvc repro
+          
+          git fetch --prune
+          dvc metrics diff --show-md master > report.md
+          
+          # Adding results to the report
+          echo "## DataViz - Count & distribution before resampling"
+          cml-publish results/before_resampling/Count_before_undersampling.png --md >> report.md
+          cml-publish results/before_resampling/distrib_before_undersampling.png --md >> report.md
+          
+          echo "## DataViz - distribution & correlation matrix after resampling"
+          cml-publish results/after_resampling/Distrib_after_undersampling.png --md >> report.md 
+          cml-publish results/after_resampling/Corr_matrices_comp.png --md >> report.md 
+          
+          echo "## Logit Model after stepwise selection"
+          cat results/model_summary.txt
+          
+          echo "## DataViz - Confusion Matrice on new sample/whole dataset"
+          cml-publish results/confusionmatrix_ns.png --md >> report.md 
+          cml-publish results/confusionmatrix_wd.png --md >> report.md 
+          
+          echo "## Classification report on new sample/whole dataset"
+          cat results/classification_report_ns.txt
+          cat results/classification_report_wd.txt    
+          cml-send-comment report.md
+          
