@@ -32,27 +32,30 @@ Pipeline
                   *****                   *                           *******
                ***                        *                                  *********
                                                                                      ****
-    understand data                  resample data                                       *
+    | understand data |                | resample data |                                 *
                                                                                          *
                                           *                                              *
                                           *                                              *
                                           *                                              *
                                                                                          *
-                                  splitting data                                         *
+                                  | splitting data |                                     *
                                                                                          *
                                  ***            ***                                      *
                                **                  ***                                   *
                              **                       **                                 *
                                                         **                             ***
-                     train model                         *                        *****
+                    | train model |                         *                        *****
                                   *****                  *                   *****
                                        ******            *             ******
                                              *****       *        *****
                                                   ***    *     ***
-                                                   
-                                                    test model  
+                                                         *
+                                                    | test model |   
                                                               
-
+##### run this cmd (after doing Preparation) to see the pipeline 
+```bash
+dvc dag
+```
 -------------------- 
 # Preparation
 
