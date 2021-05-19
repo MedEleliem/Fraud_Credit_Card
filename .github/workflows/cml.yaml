@@ -1,12 +1,13 @@
 name: model-production
-on: [pull_request]
+on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml:0-dvc2-base1
+    container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
       - name: Train model
+      
         env:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
@@ -16,3 +17,6 @@ jobs:
           # Pull data & run-cache from GOOGLE-DRIVE and reproduce pipeline
           dvc pull creditcard.csv --run-cache
           dvc repro
+          echo "## Logit Model Results" > report.md
+          cat results/model_summary.txt >> report.md
+          cml-send-comment report.md

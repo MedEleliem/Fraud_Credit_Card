@@ -57,8 +57,7 @@ stages :
     - results/splited_data/train_labels.csv
    outs : 
     - results/finalvar.pkl
-    - results/logit.pkl
-    - results/model_summary.txt   
+    - results/logit.pkl  
    metrics:
     - results/model_summary.txt:
         cache : false
