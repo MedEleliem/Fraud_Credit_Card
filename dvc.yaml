@@ -23,9 +23,7 @@ stages :
     - resample_data.percentage
    outs : 
     - balanced-data.csv  
-   metrics:
-    - results/after_resampling/NFvsF_after_undersampling.json:
-        cache: false
+
    
 
   
@@ -53,15 +51,6 @@ stages :
     - src/train.py
     - results/splited_data/train_features.csv
     - results/splited_data/train_labels.csv
-   outs : 
-    - results/finalvar.pkl
-    - results/logit.pkl  
-   metrics:
-    - results/model_summary.txt:
-        cache : false
-        
-        
-        
         
            
   test model : 
@@ -73,17 +62,5 @@ stages :
     - results/splited_data/test_features.csv
     - results/splited_data/test_labels.csv
     - creditcard.csv
-   outs:
-    - results/confusion-matrix(newsample).png
-    - results/confusion-matrix(whole_data-set).png
-   metrics :
-    - results/accuracy(newsample).json:
-        cache: false
-    - results/accuracy(whole_data-set).json:
-        cache: false
-    - results/OnNewSample_classification_report.txt :
-        cache: false
-    - results/Whole_data-set_classification_report.txt:
-        cache: false
 
    
