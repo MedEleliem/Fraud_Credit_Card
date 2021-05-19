@@ -1,13 +1,12 @@
 name: model-production
-on: [push]
+on: [pull_request]
 jobs:
   run:
     runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml-py3:latest
+    container: docker://dvcorg/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v2
       - name: Train model
-      
         env:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
