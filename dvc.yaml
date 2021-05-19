@@ -5,12 +5,7 @@ stages :
    deps : 
     - src/data_understanding.py
     - creditcard.csv
-   outs: 
-    - results/before_resampling/Count_before_undersampling.png
-    - results/before_resampling/distrib_before_undersampling.png
-   metrics:
-    - results/before_resampling/NFvsF_before_undersampling.json:
-        cache: false
+
 
   
   resample data : 
