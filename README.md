@@ -26,13 +26,13 @@ Structure
 Pipeline        
 -------------------- 
 
-                              | creditcard.csv.dvc |**
+                              | creditcard.csv.dvc |
                              *************************  *******
                        ******             *                  *********
                   *****                   *                           *******
                ***                        *                                  *********
                                                                                      ****
-  understand data                  resample data                                      *
+    understand data                  resample data                                       *
                                                                                          *
                                           *                                              *
                                           *                                              *
