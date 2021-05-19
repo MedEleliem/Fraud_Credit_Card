@@ -76,4 +76,6 @@ dvc pull creditcard.csv
 ```bash
 dvc repro
 ```
-#### after doing this, push it to a new branche, differences and new plots will be displayed in the github-action in the new pull-request
+#### after doing this, push it to a new branche, differences and new plots will be displayed in the github-action bot in the new pull-request
+
+### Also you can simply edit on github, create a pull resquest, the workflow is already automated ;) 
