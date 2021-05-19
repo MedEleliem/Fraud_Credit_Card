@@ -3,7 +3,15 @@ import statsmodels.api as sm
 from Stepwise_model_selection import forwardSelection
 import pickle
 import yaml
+import sys
 
+if len(sys.argv) != 3:
+    sys.stderr.write('Arguments error. Usage:\n')
+    sys.stderr.write('\tpython src/train.py results/finalvar.pkl results/logit.pkl\n')
+    sys.exit(1)
+
+output1 = sys.argv[1]
+output2 = sys.argv[2]
 
 X_train = pd.read_csv(r'results/splited_data/train_features.csv')
 X_test = pd.read_csv(r'results/splited_data/test_features.csv')
@@ -31,9 +39,9 @@ with open(r'results\model_summary.txt', 'w') as outfile:
         outfile.write(logit_summ.as_text())
         
         
-with open(r'results\logit.pkl',"wb") as f1 :
+with open(output1,"wb") as f1 :
     pickle.dump(log_reg,f1)
-with open(r'results\finalvar.pkl',"wb") as f2 :
+with open(output2,"wb") as f2 :
     pickle.dump(final_variables[1:],f2)
 
 f1.close()

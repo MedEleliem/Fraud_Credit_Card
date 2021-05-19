@@ -41,7 +41,7 @@ stages :
    
    
   train model :
-   cmd : python src/train.py 
+   cmd : python src/train.py results/finalvar.pkl results/logit.pkl   
    deps : 
     - src/train.py
     - results/splited_data/train_features.csv

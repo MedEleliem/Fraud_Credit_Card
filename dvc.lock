@@ -61,8 +61,8 @@ stages:
       md5: ac3f59ff3e3a7057b23e7035c11f1a31
       size: 2368
     - path: src/train.py
-      md5: 8e9632d80b58af7afd88b7e1eb1924e3
-      size: 1424
+      md5: 26393627cb012cc84e9be812546d6b09
+      size: 1426
     outs:
     - path: results/finalvar.pkl
       md5: 04d094090d565010302ebc0866b306e8
@@ -70,9 +70,6 @@ stages:
     - path: results/logit.pkl
       md5: ccb98b44b82ceae50cfe49e433ed59ac
       size: 137032
-    - path: results/model_summary.txt
-      md5: be9f191bab1d1adaca17a73ccbdde9ac
-      size: 1973
   test model:
     cmd: python src/test.py
     deps:
