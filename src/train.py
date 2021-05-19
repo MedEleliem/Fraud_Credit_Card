@@ -3,7 +3,7 @@ import statsmodels.api as sm
 from Stepwise_model_selection import forwardSelection
 import pickle
 import yaml
-from dvc.api import open
+
 
 X_train = pd.read_csv(r'results/splited_data/train_features.csv')
 X_test = pd.read_csv(r'results/splited_data/test_features.csv')
