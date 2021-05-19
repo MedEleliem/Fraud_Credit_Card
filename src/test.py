@@ -64,9 +64,6 @@ df = pd.read_csv(raw_data_path)
 X = df.iloc[:,0:30]
 y = df['Class']
 
-our_logit_model = pickle.load(open(r'results/logit.pkl', 'rb'))
-variables = pickle.load(open(r'results/finalvar.pkl', 'rb'))
-
 X_ntest = X[variables]
 X_ntest = sm.add_constant(X_ntest)
 yhat = our_logit_model.predict(X_ntest)
