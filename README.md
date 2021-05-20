@@ -93,11 +93,16 @@ dvc repro
 # Want to do some changes ?
 
 ### params.yaml
+#### get into this file
 
-
-#### To use Undersampling or Oversampling or SMOTE, change params.yaml / resample_data / param : 1 or 2 or 3 , to change the percentage of wanted percentage change params.yaml / resample_data / param : [0;1]
-
-#### To change the test/train percentage, change params.yaml / splitting_data / split-param :  [0;1]
+### to choose resampling technics
+#### splitting_data : 
+    split-param : 1 or 2 or 3 , Undersampling or Oversampling or SMOTE
+    param : [0;1]
+    
+### To change the train/test split percentage : 
+#### splitting_data :
+    split-param : 0.2
 
 #### To change the model stepwise selection Paramaters :
 ##### train_model :
