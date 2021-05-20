@@ -19,8 +19,8 @@ Structure
     ├── README.md <- this file :)
     ├── creditcard.csv.dvc <- tracked dataset
     ├── dvc.lock  <-  restricts access to stages outputs
-    ├── dvc.yaml <- contains stage that create the pipeline
-    ├── params.yaml <- contains all the parameters used in the src/ scripts
+    ├── dvc.yaml <- contains stages that create the pipeline
+    ├── params.yaml <- contains all the parameters used in the src/ scripts see more on description below
     ├── report.md
     └── requirements.txt
 Pipeline        
@@ -82,3 +82,26 @@ dvc repro
 ### e.g
 ![image](https://user-images.githubusercontent.com/64113527/118899364-7a6f7800-b906-11eb-96a4-097917ca385c.png)
 
+-------------------- 
+# Description
+
+#### when you are a Data-Scientist, and you are building a ML model, for example scores and plot are necessarily for showing the power of your model, supposing that you are working with a team of data-scientists and they want to get a branch of your original project in order to test the model locally and correct some errors or doing some regularizations or any other modifications that will improve your model optimality, they want to know the result of their commitments. So, you need to regenerate txt files that contains F1 scores for example or Students statistics TEST of the coefficients in case of linear regression or maybe a printed image file saved as jpg or png for a boxplot or residuals plot or scatter-plot in the python file that train your data-set, this files needs to be updated in each commitment, you need to create a YAML file coded in GO language in Docker software in every push or pull.
+#### What if Dataset is too big:
+#### When we have a large CSV file or a data that contains images or sound files, evaluating the model on github will be impossible because we cannot upload it on github, a new topic is introduced is DVC, DVC is built to make ML models shareable and reproducible. It is designed to handle large files, data sets, machine learning models, and metrics as well as code. So DVC can provide us to upload files on drives platforms (Google Drive for example) and linked it to our github repositories, so when one of your team want to pull the project, he will be able to download the shared Dataset also the other python files then evaluate the model locally on his machine
+
+--------------------
+# Want to do some changes ?
+
+### params.yaml
+
+
+#### To use Undersampling or Oversampling or SMOTE, change params.yaml / resample_data / param : 1 or 2 or 3 , to change the percentage of wanted percentage change params.yaml / resample_data / param : [0;1]
+
+#### To change the test/train percentage, change params.yaml / splitting_data / split-param :  [0;1]
+
+#### To change the model stepwise selection Paramaters :
+##### train_model :
+       model_type : "logistic" or "regression"
+       elimination_criteria : "aic" or "bic"
+       varchar_process : "dummy_dropfirst" 
+       p-value :  0.05, I dont know if there such a elimination criteria better than this <3 
