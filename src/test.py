@@ -30,9 +30,11 @@ y_test = pd.read_csv(r'results/splited_data/test_labels.csv')
 test_list = y_test.values.tolist()
 
 with open(input1, 'rb') as fd:
-    our_logit_model = pickle.load(fd)
-with open(input2, 'rb') as fd:
     variables = pickle.load(fd)
+    
+with open(input2, 'rb') as fd:
+    our_logit_model = pickle.load(fd)
+    
 
 
 X_ntest = X_test[variables]

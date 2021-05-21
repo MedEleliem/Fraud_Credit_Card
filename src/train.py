@@ -43,9 +43,9 @@ with open(output3, 'w') as outfile:
         
         
 with open(output1,"wb") as f1 :
-    pickle.dump(log_reg,f1)
+    pickle.dump(final_variables[1:],f1)
 with open(output2,"wb") as f2 :
-    pickle.dump(final_variables[1:],f2)
+    pickle.dump(log_reg,f2)
 
 f1.close()
 f2.close()
