@@ -1,0 +1,27 @@
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                  Class   No. Observations:                  787
+Model:                          Logit   Df Residuals:                      777
+Method:                           MLE   Df Model:                            9
+Date:                Fri, 21 May 2021   Pseudo R-squ.:                  0.8092
+Time:                        20:17:13   Log-Likelihood:                -104.09
+converged:                       True   LL-Null:                       -545.43
+Covariance Type:            nonrobust   LLR p-value:                3.330e-184
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -3.5567      0.305    -11.671      0.000      -4.154      -2.959
+V4             0.6873      0.125      5.493      0.000       0.442       0.933
+V12           -0.8105      0.187     -4.332      0.000      -1.177      -0.444
+V14           -1.0228      0.156     -6.537      0.000      -1.329      -0.716
+Amount         0.0035      0.001      4.487      0.000       0.002       0.005
+V28            3.0939      0.877      3.528      0.000       1.375       4.813
+V8            -0.2719      0.102     -2.676      0.007      -0.471      -0.073
+V11            0.4950      0.187      2.645      0.008       0.128       0.862
+V20           -0.7802      0.294     -2.651      0.008      -1.357      -0.203
+V5             0.1867      0.087      2.152      0.031       0.017       0.357
+==============================================================================
+
+Possibly complete quasi-separation: A fraction 0.31 of observations can be
+perfectly predicted. This might indicate that there is complete
+quasi-separation. In this case some parameters will not be identified.
