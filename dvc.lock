@@ -65,6 +65,12 @@ stages:
       md5: ec57876a6dba84dd48402cfd5847a02e
       size: 1669
     outs:
+    - path: results/finalvar.pkl
+      md5: 5c6e768401384131a7be3a3fd352cb01
+      size: 70
+    - path: results/logit.pkl
+      md5: a821f7fe826df160b846a15bea84940c
+      size: 149983
     - path: results/model_summary.txt
       md5: b5f3bb0b722c63e0e4cfa27352b54423
       size: 2053
