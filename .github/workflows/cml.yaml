@@ -17,6 +17,7 @@ jobs:
           # Pull data & run-cache from GOOGLE-DRIVE and reproduce pipeline
           dvc pull creditcard.csv --run-cache
           dvc repro
+          python wsgi.py
           
           git fetch --prune
           dvc metrics diff --show-md master > report.md
