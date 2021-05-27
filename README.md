@@ -14,6 +14,11 @@ Structure
         ├── prepare.py <- auxiliary functions and classes
         ├── train.py <- training the model on the output prepare
         └── test.py <- testing the model on the new sample and the whole original data-set (using pickle files)
+    ├── templates
+        └── index.html <- html script for the ML Product 
+    ├── static
+        └── css
+           └── style.css   
     ├── .dvcignore <- contains name of untracked files by dvc existing remote   
     ├── .gitignore  
     ├── README.md <- this file :)
